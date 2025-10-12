@@ -64,6 +64,7 @@ input {
   width: 30px;
   height: 30px;
   padding: 5px;
+  font-size: var(--text-sm);
   border: 1px solid var(--primary);
   border-top-left-radius: 10px;
   background-color: var(--primary);
