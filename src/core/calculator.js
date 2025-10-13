@@ -113,20 +113,22 @@ export class Calculator {
 
     switch (this.operator) {
       case '+':
-        result = prev + current
+        result = this.add(prev, current)
         break
       case '-':
-        result = prev - current
+        result = this.subtract(prev, current)
         break
       case '*':
-        result = prev * current
+        result = this.multiply(prev, current)
         break
       case '/':
-        result = current !== 0 ? prev / current : 'Error'
+        result = current !== 0 ? this.divide(prev, current) : 'Error'
         break
       default:
         return
     }
+
+    result = isNaN(result) ? 'Error' : result
 
     this.updateExpression(fullOutput)
     this.currentValue = String(result)
@@ -135,6 +137,46 @@ export class Calculator {
     this.operator = ''
     this.previousValue = ''
     this.shouldResetDisplay = true
+  }
+
+  getPrecision(value) {
+    const sValue = value.toString()
+    const parts = sValue.split('.')
+    return parts[1] ? parts[1].length : 0
+  }
+
+  getFactor(a, b, multiply = false) {
+    const aPrecision = this.getPrecision(a)
+    const bPrecision = this.getPrecision(b)
+    let p
+
+    if (multiply) {
+      p = aPrecision + bPrecision
+    } else {
+      p = aPrecision > bPrecision ? aPrecision : bPrecision
+    }
+
+    return [...Array(p)].reduce((acc) => acc * 10, 1)
+  }
+
+  add(a, b) {
+    const factor = this.getFactor(a, b)
+    return (a * factor + b * factor) / factor
+  }
+
+  subtract(a, b) {
+    const factor = this.getFactor(a, b)
+    return (a * factor - b * factor) / factor
+  }
+
+  multiply(a, b) {
+    const factor = this.getFactor(a, b, true)
+    return (a * factor * (b * factor)) / (factor * factor)
+  }
+
+  divide(a, b) {
+    const factor = this.getFactor(a, b)
+    return (a * factor) / (b * factor)
   }
 
   handleAction(action, value = null) {
