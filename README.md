@@ -48,27 +48,36 @@ Open [http://localhost:8080](http://localhost:8080) with your browser to see the
 
 ## 🌳 Project Structure:
   ```bash
-├── scripts/                                # Contains all application scripts
-│ ├── install-hooks.js                      # Install all Git hooks to .git/hooks folder
-│ └── pre-commit.js                         # Runs actions before commit
+├── config/                               # Contains all configuration files
+│  └── build/                             # Contains parts of webpack configuration
+│     ├── build-dev-server.js             # Webpack development server config
+│     ├── build-loaders.js                # Webpack loaders config
+│     ├── build-plugins.js                # Webpack plugins config
+│     └── build-webpack.js                # Merges webpack configs
+│ 
+├── public/                               # Contains all static files
+│  └── index.html                         # The web page structure and markup
 │
-├── src/                                    # Contains all application source code
-│ ├── core/                                 # Core functionality and domain logic
-│ │     ├── calculator.js                   # Calculator computation logic
-│ │     └── theme-manager.js                # Theme switching and persistence logic
-│ │
-│ ├── styles/                               # All CSS styling files
-│ │     └── style.css                       # Application styles
-│ │
-│ └── index.js                              # Entry point. Main application file that initializes and connects all modules
+├── scripts/                              # Contains all application scripts
+│  ├── install-hooks.js                   # Install all Git hooks to .git/hooks folder
+│  └── pre-commit.js                      # Runs actions before commit
 │
-├── .gitignore                              # Specifies which files Git should ignore
-├── .prettierignore                         # Specifies which files Prettier code formatter should skip
-├── .prettierrc                             # Prettier config (code formating rules)
-├── babel.config.json                       # Babel settings (convert modern JS to older versions)
-├── eslint.config.js                        # JavaScript linting rules for code quality and consistency
-├── index.html                              # The web page structure and markup
-├── package.json                            # Contains lists dependencies, scripts and version info
-├── package-lock.json                       # Contains exact versions of installed packages (ensures consistent installs)
-└── webpack.config.js                       # Contains Webpack config (how to bundle app)
+├── src/                                  # Contains all application source code
+│  ├── core/                              # Core functionality and domain logic
+│  │  ├── calculator.js                   # Calculator computation logic
+│  │  └── theme-manager.js                # Theme switching and persistence logic
+│  │
+│  ├── styles/                            # All CSS styling files
+│  │  └── styles.css                      # Application styles
+│  │
+│  └── index.js                           # Entry point. Main application file that initializes and connects all modules
+│
+├── .gitignore                            # Specifies which files Git should ignore
+├── .prettierignore                       # Specifies which files Prettier code formatter should skip
+├── .prettierrc                           # Prettier config (code formating rules)
+├── babel.config.json                     # Babel settings (convert modern JS to older versions)
+├── eslint.config.js                      # JavaScript linting rules for code quality and consistency
+├── package.json                          # Contains lists dependencies, scripts and version info
+├── package-lock.json                     # Contains exact versions of installed packages (ensures consistent installs)
+└── webpack.config.js                     # Contains Webpack config (how to bundle app)
   ```
